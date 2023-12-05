@@ -56,14 +56,21 @@ def build_model(vocab_size):
 
 ## 训练过程
 - 使用`train_model`函数对模型进行训练，epoch为100，batch-size为128。
+  - 如果训练的epoch不够，模型生成姓名的效果会很差！
 - 使用`plot_loss_curve`函数可视化训练过程中的损失下降情况。
+  ![image](https://github.com/coffee3699/NNDL2023/assets/42939049/ae8f87ec-03d0-4cbc-9bc5-188d72a45e11)
 
 ## 名字生成与可视化
 - `generate_name_with_visualization`函数实现了基于给定种子的名字生成过程，并通过条形图显示了模型在每一步预测的前5个最可能的候选字母。
+### 举例：给定的seed为"Eli"
 
-# 附加任务（+10 points）
-- 扩展模型功能：实现了一个能够根据名字的结尾或中间字母来补全整个名字的RNN模型。
-- 性能提升：尝试了不同的RNN配置和超参数，探索了如何通过调整网络结构和正则化方法来优化模型性能。
+![image](https://github.com/coffee3699/NNDL2023/assets/42939049/e8f7ebf6-5d41-4f6d-86b8-72f37ad57e7c)
+    ![image](https://github.com/coffee3699/NNDL2023/assets/42939049/917d010c-4711-4716-a1fd-17cd59687d07)
+    ![image](https://github.com/coffee3699/NNDL2023/assets/42939049/fb0d6bac-b0af-4c4e-bc01-4da2257f0aba)
+    ![image](https://github.com/coffee3699/NNDL2023/assets/42939049/55af7f36-11e5-4a2d-bdc9-d4177169dc52)
+
+## 模型性能评估
+我尝试了多种不同的seed输出给模型，如Ali，Eli，Bo，Trum，Step等，模型生成并输出的姓名都比较正常，说明了简单的RNN模型已经足以应付姓名生成这类简单的任务。
 
 # 结果和讨论
 本次实验中，基于RNN的名字生成模型展示了字符级文本生成的能力。实验过程中，发现模型对于不同长度的种子词的适应性以及对于生成具有一定创造性的名字的
