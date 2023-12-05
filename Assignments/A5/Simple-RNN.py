@@ -33,13 +33,13 @@ def build_model(vocab_size):
     model = Sequential()
     model.add(Embedding(input_dim=vocab_size, output_dim=10))
     model.add(Masking(mask_value=0))
-    model.add(SimpleRNN(units=10))
+    model.add(SimpleRNN(units=100, dropout=0.15))
     model.add(Dense(vocab_size, activation='softmax'))
     model.compile(loss='categorical_crossentropy', optimizer='adam')
     return model
 
 
-def train_model(model, sequences, next_chars, vocab_size, batch_size=128, epochs=50):
+def train_model(model, sequences, next_chars, vocab_size, batch_size=128, epochs=100):
     y = to_categorical(next_chars, num_classes=vocab_size)
     history = model.fit(sequences, y, batch_size=batch_size, epochs=epochs)
     return history
@@ -54,7 +54,7 @@ def plot_loss_curve(history):
     plt.show()
 
 
-def generate_name_with_visualization(model, char_to_idx, idx_to_char, seed, max_len=10):
+def generate_name_with_visualization(model, char_to_idx, idx_to_char, seed, max_len=15):
     seed_sequence = [char_to_idx[char] for char in seed]
     seed_sequence = np.pad(seed_sequence, (0, max_len - len(seed_sequence)), 'constant')
 
